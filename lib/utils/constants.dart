@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+final kTextStyle = TextStyle(
+  fontFamily: 'OpenSans',
+  fontSize: 22
+
+);
+
 final kHintTextStyle = TextStyle(
   color: Colors.white54,
   fontFamily: 'OpenSans',

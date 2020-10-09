@@ -13,6 +13,7 @@ class APIService {
             return User.fromJson(
                 body['user'],
                 body['user']['nationalite_athlete']['nom_nationalite'],
+                body['user']['nationalite_athlete']['link'],
                 body['token']
             );
         } else {

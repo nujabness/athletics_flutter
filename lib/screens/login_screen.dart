@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'nav.dart';
+import 'profile_screen.dart';
 import 'package:athletics_flutter/services/http_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -122,7 +122,7 @@ class LoginScreenState extends State<LoginScreen> {
               setUser(user);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Nav()),
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
               );
             });
         },
@@ -245,6 +245,7 @@ class LoginScreenState extends State<LoginScreen> {
     final SharedPreferences prefs = await this.prefs;
     prefs.setString('user', jsonEncode(user.toJson()));
     prefs.setString('nationalite_athlete', user.nationalite_athlete);
+    prefs.setString('link_nationalite', user.link_nationalite);
     prefs.setString('token', user.token);
   }
 
