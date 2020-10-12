@@ -1,23 +1,23 @@
 class User {
 
-    final String id;
-    final String email;
-    final String password;
-    final String nom_athlete;
-    final String prenom_athlete;
-    final String sexe_athlete;
-    final String nationalite_athlete;
-    final String link_nationalite;
-    final String token;
+    String id;
+    String email;
+    String password;
+    String nom_athlete;
+    String prenom_athlete;
+    String sexe_athlete;
+    String nationalite_athlete;
+    String link_nationalite;
+    String token;
 
 
     User({this.id, this.email, this.password, this.nom_athlete,
         this.prenom_athlete, this.sexe_athlete, this.nationalite_athlete,
         this.link_nationalite, this.token});
 
-    factory User.fromJson(Map<String, dynamic> json, nationalite_athlete, link_nationalite, token) {
+    factory User.fromJson(Map<String, dynamic> json, id, nationalite_athlete, link_nationalite, token) {
         return User(
-            id: json["_id"] != null ? json["_id"] : "",
+            id: id != null ? id : "",
             email: json["email"] != null ? json["email"] : "",
             password: json["password"] != null ? json["password"] : "",
             nom_athlete: json["nom_athlete"] != null ? json["nom_athlete"] : "",
@@ -32,8 +32,8 @@ class User {
     Map<String, dynamic> toJson() {
         Map<String, dynamic> map = {
             'id': id,
-            'email': email.trim(),
-            'password': password.trim(),
+            'email': email,
+            'password': password,
             'nom_athlete': nom_athlete,
             'prenom_athlete': prenom_athlete,
             'sexe_athlete': sexe_athlete,
@@ -43,5 +43,13 @@ class User {
         };
 
         return map;
+    }
+
+    Map<String, dynamic> toJsonId() {
+       Map<String, dynamic> map = {
+          'id': id,
+       };
+
+       return map;
     }
 }

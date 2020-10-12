@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:athletics_flutter/model/User.dart';
 import 'package:athletics_flutter/model/request/login_request_model.dart';
 import 'package:athletics_flutter/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -70,43 +69,43 @@ class LoginScreenState extends State<LoginScreen> {
 
   Widget buildPasswordTF() {
     return
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              'Password',
-              style: kLabelStyle,
-            ),
-            SizedBox(height: 10.0),
-            Container(
-              alignment: Alignment.centerLeft,
-              decoration: kBoxDecorationStyle,
-              height: 60.0,
-              child: TextFormField(
-                onSaved: (input) =>
-                loginRequestModel.password = input,
-                validator: (input) => input.length < 3
-                    ? "Password should be more than 3 characters"
-                    : null,
-                obscureText: true,
-                style: TextStyle(
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Text(
+            'Password',
+            style: kLabelStyle,
+          ),
+          SizedBox(height: 10.0),
+          Container(
+            alignment: Alignment.centerLeft,
+            decoration: kBoxDecorationStyle,
+            height: 60.0,
+            child: TextFormField(
+              onSaved: (input) =>
+              loginRequestModel.password = input,
+              validator: (input) => input.length < 3
+                  ? "Password should be more than 3 characters"
+                  : null,
+              obscureText: true,
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'OpenSans',
+              ),
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  Icons.lock,
                   color: Colors.white,
-                  fontFamily: 'OpenSans',
                 ),
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  contentPadding: EdgeInsets.only(top: 14.0),
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: Colors.white,
-                  ),
-                  hintText: 'Enter your Password',
-                  hintStyle: kHintTextStyle,
-                ),
+                hintText: 'Enter your Password',
+                hintStyle: kHintTextStyle,
               ),
             ),
-          ],
-        );
+          ),
+        ],
+      );
   }
 
   Widget buildLoginBtn() {
@@ -119,12 +118,12 @@ class LoginScreenState extends State<LoginScreen> {
           validateAndSave();
           APIService apiService = new APIService();
           apiService.login(loginRequestModel).then((user){
-              setUser(user);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ProfileScreen()),
-              );
-            });
+            setUser(user);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfileScreen()),
+            );
+          });
         },
         padding: EdgeInsets.all(15.0),
         shape: RoundedRectangleBorder(
@@ -243,6 +242,7 @@ class LoginScreenState extends State<LoginScreen> {
 
   void setUser(user) async {
     final SharedPreferences prefs = await this.prefs;
+    prefs.setString('id', user.id);
     prefs.setString('user', jsonEncode(user.toJson()));
     prefs.setString('nationalite_athlete', user.nationalite_athlete);
     prefs.setString('link_nationalite', user.link_nationalite);

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:athletics_flutter/model/User.dart';
-import 'package:athletics_flutter/widget/card.dart';
+import 'package:athletics_flutter/widget/card_profile.dart';
 import 'package:athletics_flutter/widget/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +22,7 @@ class ProfileState extends State<ProfileScreen> {
         prenom_athlete: "",
         sexe_athlete: "",
         nationalite_athlete: "",
+        link_nationalite: "circle",
         token: ""
     );
     @override
@@ -36,8 +37,21 @@ class ProfileState extends State<ProfileScreen> {
             appBar: AppBar(
                 backgroundColor: Color(0xFFE57373),
             ),
-            body: Center(
-                child: CardWidget(user: user)
+            body: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                            Color(0xFFE57373),
+                            Color(0xFFFFFFFF)
+                        ],
+                        stops: [0.5, 0.5],
+                    ),
+                ),
+                child: Center(
+                    child: CardProfileWidget(user: user)
+                ),
             ),
             drawer: AppDrawer()
         );
@@ -47,12 +61,13 @@ class ProfileState extends State<ProfileScreen> {
         final SharedPreferences prefs = await this.prefs;
         User userSaved =  await User.fromJson(json.decode(
             prefs.getString('user')),
+            prefs.getString('id'),
             prefs.getString('nationalite_athlete'),
             prefs.getString('link_nationalite'),
             prefs.getString('token')
         );
         setState(() {
-          user = userSaved;
+            user = userSaved;
         });
     }
 }

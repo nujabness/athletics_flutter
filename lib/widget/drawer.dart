@@ -17,7 +17,7 @@ class AppDrawer extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(builder: (context) => ProfileScreen()),
                             )
-                    }),
+                        }),
                     createDrawerItem(icon: Icons.event, text: 'Events',
                         onTap: () => {
                             Navigator.push(
@@ -25,7 +25,7 @@ class AppDrawer extends StatelessWidget {
                                 MaterialPageRoute(builder: (context) => EventsScreen()),
                             )
                         }
-                     ),
+                    ),
                     createDrawerItem(icon: Icons.note, text: 'Participations',
                         onTap: () => {
                             Navigator.push(
