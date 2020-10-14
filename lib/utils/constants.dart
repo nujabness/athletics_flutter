@@ -5,6 +5,12 @@ final kTextStyle = TextStyle(
    fontSize: 22,
 );
 
+final kTextStyleW = TextStyle(
+   fontFamily: 'OpenSans',
+   color: Colors.white,
+   fontSize: 15,
+);
+
 final kTextColorStyle = TextStyle(
    fontFamily: 'OpenSans',
    fontSize: 22,

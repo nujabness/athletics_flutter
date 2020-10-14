@@ -167,7 +167,12 @@ class EventFormState extends State<EventFormWidget> {
                                                          .map<DropdownMenuItem<String>>((String value) {
                                                          return DropdownMenuItem<String>(
                                                             value: value,
-                                                            child: Text(value),
+                                                            child: Container(
+                                                               decoration: kBoxDecorationStyle,
+                                                               child: Text(
+                                                                  value
+                                                               ),
+                                                            ),
                                                          );
                                                       }).toList(),
                                                    ),
@@ -177,27 +182,47 @@ class EventFormState extends State<EventFormWidget> {
                                        ),
                                     ),
                                     Container(
-                                      child: RaisedButton(
-                                         color: Color(0xFFE57373),
-                                         padding: EdgeInsets.all(15.0),
-                                         shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(10.0),
-                                         ),
-                                         onPressed: () {
-                                            DatePicker.showDatePicker(context,
-                                               showTitleActions: true,
-                                               minTime: DateTime(2018, 3, 5),
-                                               maxTime: DateTime(2019, 6, 7), onChanged: (date) {
-                                                  print('change $date');
-                                               }, onConfirm: (date) {
-                                                  print('confirm $date');
-                                               }, currentTime: DateTime.now(), locale: LocaleType.fr);
-                                         },
-                                         child: Text(
-                                            'show date time picker (France)',
-                                            style: TextStyle(color: Colors.white),
-                                         )),
+                                       padding: EdgeInsets.all(30),
+                                       child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                             Text(
+                                                'Date',
+                                                style: kLabelStyleDark,
+                                             ),
+                                              SizedBox(height: 10.0),
+                                              Container(
+                                                 padding: EdgeInsets.only(left: 20, right: 20),
+                                                 alignment: Alignment.centerLeft,
+                                                 decoration: kBoxDecorationStyle,
+                                                 height: 60.0,
+                                                child:
+                                                  FlatButton(
+                                                     color: Color(0xFFE57373),
+                                                     padding: EdgeInsets.all(15.0),
+                                                     shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(10.0),
+                                                     ),
+                                                     onPressed: () {
+                                                        DatePicker.showDatePicker(context,
+                                                           showTitleActions: true,
+                                                           minTime: DateTime(2018, 3, 5),
+                                                           maxTime: DateTime(2019, 6, 7), onChanged: (date) {
+                                                              print('change $date');
+                                                           }, onConfirm: (date) {
+                                                              print('confirm $date');
+                                                           }, currentTime: DateTime.now(), locale: LocaleType.fr);
+                                                     },
+                                                     child: Text(
+                                                        'Selectionner la date',
+                                                        style: kTextStyleW,
+                                                     )
+                                                  ),
+                                              ),
+                                          ],
+                                       ),
                                     ),
+                                    SizedBox(height: 40.0),
                                     Row(
                                        mainAxisAlignment: MainAxisAlignment.center,
                                        children: [
@@ -237,7 +262,8 @@ class EventFormState extends State<EventFormWidget> {
                                                       context,
                                                       MaterialPageRoute(builder: (context) => ProfileScreen()),
                                                    );
-                                                });                                             },
+                                                });
+                                             },
                                              padding: EdgeInsets.all(15.0),
                                              shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(10.0),
